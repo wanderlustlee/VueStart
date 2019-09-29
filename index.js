@@ -24,6 +24,17 @@ var app4 = new Vue({
     }
 });
 
+new Vue({
+    el: '#v-for-object',
+    data: {
+        object: {
+            title: 'How to do lists in Vue',
+            author: 'Jane Doe',
+            publishedAt: '2016-04-10'
+        }
+    }
+});
+
 Vue.component('todo-item', {
     props: ['todo'],
     template: '<li>{{ todo.text }}</li>'
@@ -64,4 +75,82 @@ var vm = new Vue({
     }
 });
 
-// 计算属性computed和方法methods都可以实现对属性进行操作，不同的是计算属性是基于它们的响应式依赖进行缓存的。只有依赖的属性发生改变时才会重新计算。这样可以节省计算时带来的性能开销
+var vm2 = new Vue({
+    el: "#vm2",
+    data: {
+        items: ['a', 'b', 'c']
+    }
+});
+
+
+Vue.component('todo-item', {
+    template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">Remove</button>\
+    </li>\
+  ',
+    props: ['title']
+})
+
+new Vue({
+    el: '#todo-list-example',
+    data: {
+        newTodoText: '',
+        todos: [
+            {
+                id: 1,
+                title: 'Do the dishes',
+            },
+            {
+                id: 2,
+                title: 'Take out the trash',
+            },
+            {
+                id: 3,
+                title: 'Mow the lawn'
+            }
+        ],
+        nextTodoId: 4
+    },
+    methods: {
+        addNewTodo: function () {
+            this.todos.push({
+                id: this.nextTodoId++,
+                title: this.newTodoText
+            })
+            this.newTodoText = ''
+        }
+    }
+});
+
+
+//vue不能检测普通方法对数组数据项和数组的长度的修改、对象属性的添加或删除，可以修改成功，但是DOM不会重新渲染。
+
+
+
+
+
+let t = new Array(1030);
+console.time('time1');
+for(let i=0; i<1030; i++){
+    t.push(1);
+}
+console.timeEnd('time1');
+VM281:6 time1: 0.04296875ms
+undefined
+let t2 = new Array();
+console.time('time2');
+for(let i=0; i<1030; i++){
+    t2.push(1);
+}
+console.timeEnd('time2');
+VM317:6 time2: 0.04296875ms
+undefined
+let t3 = [];
+console.time('time3');
+for(let i=0; i<1030; i++){
+    t3.push(1);
+}
+console.timeEnd('time3');
+VM338:6 time3: 0.041748046875ms

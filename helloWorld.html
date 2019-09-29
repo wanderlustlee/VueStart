@@ -24,6 +24,12 @@
 </div>
 
 
+<ul id="v-for-object" class="demo">
+    <li v-for="(value,name,index) in object">
+       {{ index}}: {{ name }}: {{ value }}
+    </li>
+</ul>
+
 <div id="app-7">
     <ol>
         <todo-item
@@ -49,6 +55,35 @@
     <p>Computed reversed message: "{{ reversedMessage() }}"</p>
 </div>
 
+<div id="vm2">
+    <ol>
+        <li v-for="item in items">
+            {{item}}
+        </li>
+    </ol>
+</div>
+
+
+<div id="todo-list-example">
+    <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input
+                v-model="newTodoText"
+                id="new-todo"
+                placeholder="E.g. Feed the cat"
+        >
+        <button>Add</button>
+    </form>
+    <ul>
+        <li
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                v-bind:key="todo.id"
+                v-bind:title="todo.title"
+                v-on:remove="todos.splice(index, 1)"
+        ></li>
+    </ul>
+</div>
 
 <script src="index.js"></script>
 </body>
