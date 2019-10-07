@@ -25,8 +25,8 @@
 
 
 <ul id="v-for-object" class="demo">
-    <li v-for="(value,name,index) in object">
-       {{ index}}: {{ name }}: {{ value }}
+    <li v-for="(value,key,index) in object">
+        {{ index}}: {{ key }}: {{ value }}
     </li>
 </ul>
 
@@ -61,6 +61,9 @@
             {{item}}
         </li>
     </ol>
+
+    <input v-model="message" placeholder="edit me">
+    <p>Message is: {{ message }}</p>
 </div>
 
 
@@ -84,6 +87,7 @@
         ></li>
     </ul>
 </div>
+
 
 <script src="index.js"></script>
 </body>

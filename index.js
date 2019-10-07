@@ -78,7 +78,8 @@ var vm = new Vue({
 var vm2 = new Vue({
     el: "#vm2",
     data: {
-        items: ['a', 'b', 'c']
+        items: ['a', 'b', 'c'],
+        message: ""
     }
 });
 
@@ -124,33 +125,3 @@ new Vue({
     }
 });
 
-
-//vue不能检测普通方法对数组数据项和数组的长度的修改、对象属性的添加或删除，可以修改成功，但是DOM不会重新渲染。
-
-
-
-
-
-let t = new Array(1030);
-console.time('time1');
-for(let i=0; i<1030; i++){
-    t.push(1);
-}
-console.timeEnd('time1');
-VM281:6 time1: 0.04296875ms
-undefined
-let t2 = new Array();
-console.time('time2');
-for(let i=0; i<1030; i++){
-    t2.push(1);
-}
-console.timeEnd('time2');
-VM317:6 time2: 0.04296875ms
-undefined
-let t3 = [];
-console.time('time3');
-for(let i=0; i<1030; i++){
-    t3.push(1);
-}
-console.timeEnd('time3');
-VM338:6 time3: 0.041748046875ms
