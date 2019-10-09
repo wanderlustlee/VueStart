@@ -84,14 +84,15 @@ var vm2 = new Vue({
 });
 
 
+//
 Vue.component('todo-item', {
-    template: '\
-    <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">Remove</button>\
-    </li>\
-  ',
-    props: ['title']
+    props: ['title'],
+    template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">Remove</button>
+    </li>
+  `
 })
 
 new Vue({
